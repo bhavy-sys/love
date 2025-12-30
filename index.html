@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: black;
+      color: white;
+      text-align: center;
+    }
+    #loader {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+    }
+    #content {
+      display: none;
+      padding: 40px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: hotpink;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    #typing {
+      font-size: 20px;
+      margin-top: 30px;
+      min-height: 60px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="loader">
+  🔄 Loading girlfriend data… <br> Please wait 💕
+</div>
+
+<div id="content">
+  <h1>Hey You 😌</h1>
+  <div id="typing"></div>
+
+  <button onclick="prank()">❌ Don’t click this</button>
+
+  <p id="result"></p>
+</div>
+
+<script>
+  // Fake loading
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("content").style.display = "block";
+    typeText();
+  }, 3000);
+
+  // Typing effect
+  const text = "I didn’t know how to say this... so I made a whole website just for you ❤️";
+  let index = 0;
+
+  function typeText() {
+    if (index < text.length) {
+      document.getElementById("typing").innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeText, 60);
+    }
+  }
+
+  // Prank button
+  function prank() {
+    document.getElementById("result").innerHTML =
+      "I told you not to click 😭<br><br>But since you did… I love you more than anything ❤️";
+  }
+</script>
+
+</body>
+  <audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+</html>

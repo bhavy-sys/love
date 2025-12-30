@@ -1,89 +1,228 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You ❤️</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: black;
-      color: white;
-      text-align: center;
-    }
-    #loader {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-    }
-    #content {
-      display: none;
-      padding: 40px;
-    }
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background: hotpink;
-      color: white;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    #typing {
-      font-size: 20px;
-      margin-top: 30px;
-      min-height: 60px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>For Khushu ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:black;
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+#loader{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+}
+
+#content{
+  display:none;
+  padding:30px;
+}
+
+#final{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  animation:fadeIn 2s ease;
+}
+
+h1,h2{
+  color:hotpink;
+}
+
+#typing{
+  font-size:20px;
+  margin-top:20px;
+  min-height:140px;
+}
+
+/* Images */
+img{
+  width:260px;
+  border-radius:15px;
+  margin-top:20px;
+  animation:fadeZoom 2s ease;
+}
+
+@keyframes fadeZoom{
+  from{opacity:0;transform:scale(0.7);}
+  to{opacity:1;transform:scale(1);}
+}
+
+.section{
+  margin-top:40px;
+}
+
+/* Button */
+button{
+  padding:12px 20px;
+  font-size:16px;
+  border:none;
+  border-radius:8px;
+  background:hotpink;
+  color:white;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  bottom:-10px;
+  font-size:20px;
+  animation:floatUp 6s linear infinite;
+  opacity:0.7;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-110vh);opacity:0;}
+}
+
+/* Glow + heartbeat */
+.glow{
+  color:hotpink;
+  font-weight:bold;
+  animation:heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat{
+  0%{transform:scale(1);}
+  25%{transform:scale(1.1);}
+  50%{transform:scale(1);}
+  75%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+</style>
 </head>
+
 <body>
 
+<!-- Background Music -->
+<audio id="bgMusic" autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+</audio>
+
 <div id="loader">
-  🔄 Loading girlfriend data… <br> Please wait 💕
+🎆 Preparing New Year surprise…<br>Please wait ❤️
 </div>
 
 <div id="content">
-  <h1>Hey You 😌</h1>
-  <div id="typing"></div>
 
-  <button onclick="prank()">❌ Don’t click this</button>
+<h1>🎉 Happy New Year My Love ❤️</h1>
 
-  <p id="result"></p>
+<div id="typing"></div>
+
+<div class="section">
+<h2>🌸 The day we first met</h2>
+<p>📅 <b>DD / MM / YYYY</b></p>
+<img src="first_meet.jpg">
+<p>That day changed everything 💫</p>
+</div>
+
+<div class="section">
+<h2>💍 The day I proposed you</h2>
+<p>📅 <b> 09/ 10 / 2022 </b></p>
+<img src="proposal.jpg">
+<p>Best decision of my life ❤️</p>
+</div>
+
+<div class="section">
+<button onclick="prank()">❌ Don’t click this</button>
+<p id="result"></p>
+</div>
+
+</div>
+
+<!-- FINAL FOREVER PAGE -->
+<div id="final">
+  <h1>💖 Forever starts with us 💖</h1>
+  <p style="font-size:20px;max-width:600px;">
+    “Maine sikke pheke the nadiyon mein,<br>
+    toote taaron se tujhe maanga tha ✨”  
+    <br><br>
+    Chahe jitna bhi long distance ho,<br>
+    mera har kal sirf tumhare saath hi hai ❤️
+  </p>
+  <h2>— Bhavy ❤️ Khushu</h2>
 </div>
 
 <script>
-  // Fake loading
-  setTimeout(() => {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("content").style.display = "block";
-    typeText();
-  }, 3000);
+// Loader
+setTimeout(()=>{
+  document.getElementById("loader").style.display="none";
+  document.getElementById("content").style.display="block";
+  typeText();
+},3000);
 
-  // Typing effect
-  const text = "I didn’t know how to say this... so I made a whole website just for you ❤️";
-  let index = 0;
+// Typing messages
+const messages = [
+  "Long distance hai… par dil ka distance kabhi nahi hua 💔📍",
+  "Har raat screen ke uss side tumhe yaad karna meri aadat ban chuki hai ❤️",
+  "Chahe kitni bhi doori ho, meri mohabbat hamesha tumhare paas rahegi ✨",
+  "Bhavy apni <span class='glow'>Khushu</span> ko bohot bohot pyaar karte hai 💓",
+  "Chahe distance ho ya waqt… meri mohabbat sirf tum tak hi rahegi 🌍➡️❤️",
+  "Happy New Year meri jaan 🎆✨"
+];
 
-  function typeText() {
-    if (index < text.length) {
-      document.getElementById("typing").innerHTML += text.charAt(index);
-      index++;
-      setTimeout(typeText, 60);
+let msgIndex = 0;
+let charIndex = 0;
+
+function typeText(){
+  if(msgIndex < messages.length){
+    if(charIndex < messages[msgIndex].length){
+      document.getElementById("typing").innerHTML += messages[msgIndex][charIndex];
+      charIndex++;
+      setTimeout(typeText,55);
+    }else{
+      document.getElementById("typing").innerHTML += "<br><br>";
+      msgIndex++;
+      charIndex = 0;
+      setTimeout(typeText,900);
     }
+  }else{
+    setTimeout(showFinal,3000);
   }
+}
 
-  // Prank button
-  function prank() {
-    document.getElementById("result").innerHTML =
-      "I told you not to click 😭<br><br>But since you did… I love you more than anything ❤️";
-  }
+function showFinal(){
+  document.getElementById("content").style.display="none";
+  document.getElementById("final").style.display="flex";
+}
+
+// Prank
+function prank(){
+  document.getElementById("result").innerHTML =
+  "I knew you’ll click 😭<br><br>Bas yahi kehna tha… I love you endlessly ❤️";
+}
+
+// Floating hearts
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(15+Math.random()*20)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>{heart.remove();},6000);
+},500);
 </script>
 
 </body>
-  <audio autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
-</audio>
-
 </html>
